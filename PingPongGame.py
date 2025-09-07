@@ -15,7 +15,8 @@ ball.color("white")
 ball.shapesize(stretch_len=1 , stretch_wid=1) # actual stretch is * by 20 px 
 ball.goto(0 , 0) 
 ball.penup() 
-
+ball_dx , ball_dy = 1 , 1 
+ball_speed = .5 
 #center line 
 center_line = turtle.Turtle() 
 center_line.speed(0) 
@@ -33,7 +34,7 @@ player1.shape("square")
 player1.shapesize(stretch_len=1 , stretch_wid=5) 
 player1.penup()
 player1.goto(x = -350 , y = 0)
-
+p1_score , p2_score = 0 , 0
 #Player 2 
 player2 = turtle.Turtle() 
 player2.speed(0) 
@@ -78,3 +79,47 @@ screen.onkeypress(move_down_p2 , "Down")
 # Game Loop 
 while True :
     screen.update()
+
+    # ball movement
+    ball.setx(ball.xcor() + (ball_dx * ball_speed))
+    ball.sety(ball.ycor() + (ball_dy * ball_speed))
+
+    # borders collisions 
+
+    if(ball.ycor() > 290):
+        ball.sety(290) 
+        ball_dy *= -1 
+
+    if(ball.ycor() < -290):
+        ball.sety(-290) 
+        ball_dy *= -1
+
+    if(ball.xcor() < -340 and ball.xcor() > -350
+        and ball.ycor() > (player1.ycor() - 60) 
+        and ball.ycor() < (player1.ycor() + 60)):
+        ball.setx(-340)
+        ball_dx *= -1
+
+    if (ball.xcor() > 340 and ball.xcor() < 350 
+        and ball.ycor() > (player2.ycor() - 60) 
+        and ball.ycor() < (player2.ycor() + 60)):
+        ball.setx(340)
+        ball_dx *= -1
+
+    if ball.xcor() > 390:
+        ball.goto(0, 0)
+        ball_dx *= -1
+        board.clear()
+        p1_score+=1 
+        board.write(f"Player1: {p1_score} Player2: {p2_score}",
+                    align="center", font=("Courier", 14, "normal"))
+
+    if ball.xcor() < -390:
+        ball.goto(0, 0)
+        ball_dx *= -1
+        board.clear()
+        p2_score+=1 
+        board.write(f"Player1: {p1_score} Player2: {p2_score}",
+                    align="center", font=("Courier", 14, "normal"))
+
+
