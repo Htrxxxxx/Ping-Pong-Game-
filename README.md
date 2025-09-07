@@ -6,7 +6,7 @@ First player to miss gives a point to the opponent.
 
 ---
 
-## 🎮 Gameplay
+##  Gameplay
 - **Player 1 (Left Paddle)**  
   - Move Up: `w`  
   - Move Down: `s`
@@ -21,7 +21,7 @@ First player to miss gives a point to the opponent.
 
 ---
 
-## 🖥️ Features
+##  Features
 - Two-player local gameplay.  
 - Scoreboard updates in real-time.  
 - Ball resets to the center after each point.  
@@ -31,7 +31,7 @@ First player to miss gives a point to the opponent.
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Clone the repository
 ```bash
